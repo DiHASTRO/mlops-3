@@ -1,0 +1,199 @@
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="UNETPP_DF_RETRAINING" name="UNETPP_DF — BPMN">
+    <mxGraphModel dx="2846" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2670" pageHeight="1335" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pool" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;swimlane;horizontal=1;startSize=40;collapsible=0;container=1;recursiveResize=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#72849A;strokeWidth=1.5;fontSize=19;fontStyle=1;align=left;spacingLeft=18;" value="UNETPP_DF" vertex="1">
+          <mxGeometry height="890" width="2590" x="40" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_mlops" parent="pool" style="html=1;fontFamily=Arial;fontColor=#20324B;swimlane;horizontal=0;startSize=134;collapsible=0;container=1;recursiveResize=0;fillColor=#E5EDF8;swimlaneFillColor=#F3F7FC;strokeColor=#A9B6C7;strokeWidth=1;fontSize=18;fontStyle=1;align=center;whiteSpace=wrap;" value="MLOps&lt;br&gt;и мониторинг" vertex="1">
+          <mxGeometry height="280" width="2590" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.event;perimeter=ellipsePerimeter;aspect=fixed;outline=standard;symbol=conditional;fillColor=#F0FAF5;strokeColor=#487D65;strokeWidth=1.8;" value="" vertex="1">
+          <mxGeometry height="54" width="54" x="170" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="start_label" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=17;spacing=0;" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Обнаружен дрейф&lt;/b&gt;&lt;br&gt;D ≥ τ&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="164" x="115" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="data" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EDF4FE;strokeColor=#6684AA;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Подготовить данные&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Новые изображения + маски&lt;br&gt;Версия train / val / holdout&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="215" x="290" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="select_new" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EAF6ED;strokeColor=#648D72;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Победитель: кандидат&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Выбрать новую версию&lt;br&gt;UNETPP_DF&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="250" x="1525" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="select_current" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EAF6ED;strokeColor=#648D72;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Победитель: текущая&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;При меньшем / равном AUC&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="250" x="1525" y="179" as="geometry" />
+        </mxCell>
+        <mxCell id="winner_merge" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.gateway2;perimeter=rhombusPerimeter;gwType=exclusive;outline=none;symbol=none;fillColor=#FFF5D7;strokeColor=#AF903D;strokeWidth=1.6;" value="" vertex="1">
+          <mxGeometry height="56" width="56" x="1820" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EAF6ED;strokeColor=#648D72;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Деплой лучшей модели&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Новая → обновить версию&lt;br&gt;Текущая → оставить в работе&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="225" x="1940" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="telegram" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=send;fillColor=#EDF4FE;strokeColor=#6684AA;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Уведомить в Telegram&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Версии и AUC обеих моделей&lt;br&gt;Победитель и итог деплоя&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="230" x="2250" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="lane_mlops" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.event;perimeter=ellipsePerimeter;aspect=fixed;outline=end;symbol=general;fillColor=#F0FAF5;strokeColor=#487D65;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="54" width="54" x="2520" y="128" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_train" parent="pool" style="html=1;fontFamily=Arial;fontColor=#20324B;swimlane;horizontal=0;startSize=134;collapsible=0;container=1;recursiveResize=0;fillColor=#EDF1F8;swimlaneFillColor=#F8FAFD;strokeColor=#A9B6C7;strokeWidth=1;fontSize=18;fontStyle=1;align=center;whiteSpace=wrap;" value="Обучение&lt;br&gt;и оценка" vertex="1">
+          <mxGeometry height="300" width="2590" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="retrain" parent="lane_train" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EDF4FE;strokeColor=#6684AA;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Retraining UNETPP_DF&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;U-Net++ · EfficientNet-B0&lt;br&gt;0.7 Focal + 0.3 Dice&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="240" x="585" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluate" parent="lane_train" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EDF4FE;strokeColor=#6684AA;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Оценить обе модели&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Один фиксированный holdout&lt;br&gt;AUC по вероятностям&lt;br&gt;Dice / IoU для проверки&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="255" x="925" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="auction" parent="lane_train" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=service;fillColor=#EDF4FE;strokeColor=#6684AA;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Аукцион по AUC&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Сравнить новую&lt;br&gt;и текущую модели&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="200" x="1265" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="auc_gateway" parent="lane_train" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.gateway2;perimeter=rhombusPerimeter;gwType=exclusive;outline=none;symbol=none;fillColor=#FFF5D7;strokeColor=#AF903D;strokeWidth=1.6;" value="" vertex="1">
+          <mxGeometry height="65" width="65" x="1555" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="auc_question" parent="lane_train" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=17;spacing=0;" value="&lt;b&gt;AUC кандидата выше?&lt;/b&gt;" vertex="1">
+          <mxGeometry height="48" width="238" x="1470" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_expert" parent="pool" style="html=1;fontFamily=Arial;fontColor=#20324B;swimlane;horizontal=0;startSize=134;collapsible=0;container=1;recursiveResize=0;fillColor=#FFF2CE;swimlaneFillColor=#FFFCF4;strokeColor=#A9B6C7;strokeWidth=1;fontSize=18;fontStyle=1;align=center;whiteSpace=wrap;" value="Эксперт&lt;br&gt;Human-in-the-loop" vertex="1">
+          <mxGeometry height="270" width="2590" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="review" parent="lane_expert" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=user;fillColor=#FFF4D7;strokeColor=#B89543;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Валидация кандидата&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Проверить разметку и маски&lt;br&gt;Оценить качество, дать допуск&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="255" x="925" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="refine" parent="lane_expert" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.task2;whiteSpace=wrap;rectStyle=rounded;size=10;container=1;expand=0;collapsible=0;taskMarker=user;fillColor=#FFF4D7;strokeColor=#B89543;strokeWidth=1.6;spacingTop=20;spacingLeft=8;spacingRight=8;fontSize=17;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;&quot;&gt;Уточнить данные&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.35;margin-top:6px;&quot;&gt;Исправить разметку&lt;br&gt;и параметры обучения&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="240" x="585" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="approval" parent="lane_expert" style="html=1;fontFamily=Arial;fontColor=#20324B;shape=mxgraph.bpmn.gateway2;perimeter=rhombusPerimeter;gwType=exclusive;outline=none;symbol=none;fillColor=#FFF5D7;strokeColor=#AF903D;strokeWidth=1.6;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="1275" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="approval_label" parent="lane_expert" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=17;spacing=0;" value="&lt;b&gt;Эксперт допустил&lt;br&gt;кандидата?&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="208" x="1348" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f_start_data" edge="1" parent="1" source="start" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="data" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="264" y="362.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_data_train" edge="1" parent="1" source="data" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="retrain" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="362.5" />
+              <mxPoint x="580" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_train_eval" edge="1" parent="1" source="retrain" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="evaluate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_eval_review" edge="1" parent="1" source="evaluate" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="review" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_review_approval" edge="1" parent="1" source="review" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="approval" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1220" y="915" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_approval_yes" edge="1" parent="1" source="approval" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="auction" value="Да">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="37" y="42" as="offset" />
+            <Array as="points">
+              <mxPoint x="1345" y="765" />
+              <mxPoint x="1405" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_approval_no" edge="1" parent="1" source="approval" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=dash;startSize=8;" target="refine" value="Нет: нужна доработка">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" as="offset" />
+            <Array as="points">
+              <mxPoint x="1345" y="1020" />
+              <mxPoint x="745" y="1020" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_refine_train" edge="1" parent="1" source="refine" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="retrain" value="Повторное обучение">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="79" y="24" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_auction_gate" edge="1" parent="1" source="auction" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="auc_gateway" value="">
+          <mxGeometry relative="1" x="-0.0054" as="geometry">
+            <Array as="points">
+              <mxPoint x="1505" y="637.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_auc_new" edge="1" parent="1" source="auc_gateway" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="select_new" value="Да: AUC_new &gt; AUC_current">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-23" y="17" as="offset" />
+            <Array as="points">
+              <mxPoint x="1627.5" y="550" />
+              <mxPoint x="1515" y="550" />
+              <mxPoint x="1515" y="306.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_auc_current" edge="1" parent="1" source="auc_gateway" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=dash;startSize=8;" target="select_current" value="Нет: AUC_new ≤ AUC_current">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-94" y="-10" as="offset" />
+            <Array as="points">
+              <mxPoint x="1840" y="637.5" />
+              <mxPoint x="1840" y="525" />
+              <mxPoint x="1690" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_new_merge" edge="1" parent="1" source="select_new" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="winner_merge" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1888" y="306.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_current_merge" edge="1" parent="1" source="select_current" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="winner_merge" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1888" y="429" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_merge_deploy" edge="1" parent="1" source="winner_merge" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="deploy" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1916" y="365" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f_deploy_telegram" edge="1" parent="1" source="deploy" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="telegram" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_telegram_end" edge="1" parent="1" source="telegram" style="html=1;fontFamily=Arial;fontColor=#20324B;edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=0;rounded=0;endArrow=blockThin;endFill=1;endSize=9;strokeColor=#465A73;strokeWidth=1.7;fontSize=15;labelBackgroundColor=#FFFFFF;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="end" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=38;spacing=0;" value="&lt;b&gt;UNETPP_DF&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="2200" x="48" y="28" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=22;spacing=0;fontColor=#62748B;" value="Дрейф → переобучение → экспертная валидация → аукцион по AUC → деплой → Telegram" vertex="1">
+          <mxGeometry height="40" width="2450" x="50" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;rounded=0;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;strokeColor=#CED7E3;strokeWidth=1;fillColor=#F8FAFD;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;margin-bottom:9px;&quot;&gt;Нотация и ответственность&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.5;&quot;&gt;Круг с условием — запуск по дрейфу; жирный круг — завершение.&lt;br&gt;Задача с шестерёнкой — автоматическая; с человеком — User Task.&lt;br&gt;Ромб с X — исключающий шлюз; конверт — отправка уведомления.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="145" width="800" x="40" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="auc_notes" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;rounded=0;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;strokeColor=#CED7E3;strokeWidth=1;fillColor=#F8FAFD;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;margin-bottom:9px;&quot;&gt;Правило оценки и выбора&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.5;&quot;&gt;AUC: macro ROC-AUC One-vs-Rest по softmax-вероятностям пикселей, до argmax.&lt;br&gt;Обе версии оцениваются на одной фиксированной выборке, не используемой в train.&lt;br&gt;Побеждает больший AUC; при равенстве сохраняется текущая модель.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="145" width="1080" x="880" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cycle_notes" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;rounded=0;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;strokeColor=#CED7E3;strokeWidth=1;fillColor=#F8FAFD;" value="&lt;div style=&quot;font-size:18px;font-weight:bold;margin-bottom:9px;&quot;&gt;Условия цикла&lt;/div&gt;&lt;div style=&quot;font-size:16px;line-height:1.5;&quot;&gt;D — согласованная метрика дрейфа; τ — её порог.&lt;br&gt;Каждый дрейф запускает новый экземпляр процесса.&lt;br&gt;Отклонение экспертом ведёт к повторному обучению.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="145" width="630" x="2000" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="end_label" parent="1" style="html=1;fontFamily=Arial;fontColor=#20324B;text;whiteSpace=wrap;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=17;spacing=0;" value="&lt;b&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Цикл завершён&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="42" width="140" x="2517" y="388" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
