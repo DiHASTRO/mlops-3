@@ -1,0 +1,93 @@
+# ---------- Python ----------
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+develop-eggs/
+downloads/
+wheels/
+*.whl
+
+# ---------- Виртуальные окружения ----------
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ---------- Тесты / линтеры / кэши ----------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pylint.d/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# ---------- Jupyter ----------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ---------- IDE ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ---------- Локальные конфиги и секреты ----------
+config.local
+.env
+.env.*
+!.env.example
+*.local
+
+# ---------- Данные / артефакты ML ----------
+*.csv
+!requirements.csv
+
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.h5
+*.pb
+*.tflite
+
+prediction_out/
+inference_out/
+outputs/
+logs/
+*.log
+
+# ---------- DVC ----------
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+
+# ---------- Данные (датасеты) ----------
+dataset/
+dataset_processed/
+dataset_patches_256/
+data/raw/
+data/processed/
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Docker ----------
+docker-compose.override.yml
+
+# ---------- Временные файлы ----------
+*.tmp
+*.bak
+*.orig

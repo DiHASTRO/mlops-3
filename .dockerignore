@@ -1,0 +1,12 @@
+.git
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pylintrc
+.idea/
+.vscode/
+test/
+*.md
+!README.md
