@@ -16,11 +16,11 @@ packages = [
 python = "^3.11"
 
 # --- PyTorch (CUDA 13.0) ---
-torch = { version = "2.10.0", source = "pytorch-cu130" }
-torchvision = { version = "0.25.0", source = "pytorch-cu130" }
+#torch = { version = "2.10.0", source = "pytorch-cu130" }
+#torchvision = { version = "0.25.0", source = "pytorch-cu130" }
 
 # --- ML / CV ---
-segmentation-models-pytorch = "^0.5"
+#segmentation-models-pytorch = "^0.5"
 numpy = "^2.0"
 pandas = "2.3.3"
 scipy = "1.15.3"
@@ -42,6 +42,7 @@ dvc = { version = "^3.0", extras = ["s3"] }
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0"
 pylint = "^4.0"
+pre-commit = "^4.0"
 
 [[tool.poetry.source]]
 name = "pytorch-cu130"
